@@ -22,6 +22,18 @@ body {
     font-size: 2em;
 }
 
+#digits {
+    width: 600px;
+}
+
+#operators {
+    width: 200px;
+}
+
+.key-container {
+    display: flex;
+}
+
 .digit {
     outline: none;
     background-color: #586e75;
