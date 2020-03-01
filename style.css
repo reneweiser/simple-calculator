@@ -1,0 +1,40 @@
+body {
+    background-color: #002b36;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    width: 800px;
+    color: #fdf6e3;
+}
+
+#calculator-input {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #586e75;
+    text-align: right;
+    color: #fdf6e3;
+    padding: 1em 0.5em;
+    border: 1px solid #073642;
+    border-radius: 5px;
+    width: 100%;
+    margin: 2em 0;
+    font-size: 2em;
+}
+
+.digit {
+    outline: none;
+    background-color: #586e75;
+    color: #fdf6e3;
+    width: 196px;
+    height: 100px;
+    margin: 2px;
+    font-size: 1.5em;
+    border: 1px solid #073642;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.digit:hover {
+    background-color: #657b83;
+}
