@@ -50,3 +50,7 @@ body {
 .digit:hover {
     background-color: #657b83;
 }
+
+.digit:disabled {
+    background-color: rgba(88, 110, 117, 0.2);
+}

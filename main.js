@@ -68,6 +68,7 @@ operators.forEach(key => {
         putDigit(calculatorInput.value);
         input.operator = key;
         calculatorInput.value = '';
+        decimalButton.disabled = false;
     });
     operatorContainer.appendChild(currentNode);
 });
@@ -75,7 +76,10 @@ operators.forEach(key => {
 let decimalButton = document.createElement('button');
 decimalButton.className = 'digit';
 decimalButton.innerText = '.';
-decimalButton.addEventListener('click', () => calculatorInput.value = `${calculatorInput.value}.`);
+decimalButton.addEventListener('click', (e) => {
+    calculatorInput.value = `${calculatorInput.value}.`;
+    e.target.disabled = true;
+});
 digitContainer.appendChild(decimalButton);
 
 let evaluateButton = document.createElement('button');
@@ -85,6 +89,7 @@ evaluateButton.addEventListener('click', () => {
     putDigit(calculatorInput.value);
     input.lhs = operate(input.operator, input.lhs, input.rhs);
     calculatorInput.value = input.lhs;
+    decimalButton.disabled = false;
 });
 digitContainer.appendChild(evaluateButton);
 
@@ -98,5 +103,6 @@ clearButton.addEventListener('click', () => {
         operator: null
     };
     calculatorInput.value = '';
+    decimalButton.disabled = false;
 });
 document.querySelector('#functions').appendChild(clearButton);
