@@ -42,3 +42,8 @@ keys.forEach(key => {
     currentNode.innerText = key;
     keyContainer.appendChild(currentNode);
 });
+
+let clearButton = document.createElement('button');
+clearButton.className = 'digit';
+clearButton.innerText = 'AC';
+keyContainer.appendChild(clearButton);
