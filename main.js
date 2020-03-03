@@ -1,112 +1,69 @@
-function add(a, b) {
-    return (parseFloat(a, 10) + parseFloat(b, 10)).toPrecision(5);
-}
-
-function subtract(a, b) {
-    return (a - b).toPrecision(5);
-}
-
-function multiply(a, b) {
-    return (a * b).toPrecision(5);
-}
-
-function divide(a, b) {
-    return (a / b).toPrecision(5);
-}
-
-function operate(operator, a, b) {
-    if (b === null) return a;
-    let result = null;
-    switch(operator)
-    {
-        case '+':
-            result = add(a,b);
-            break;
-        case '-':
-            result = subtract(a,b);
-            break;
-        case '*':
-            result = multiply(a,b);
-            break;
-        case '/':
-            result = divide(a,b);
-            break;
-    }
-    return result;
-}
-
-function putDigit(digit) {
-    if (input.operator === null)
-        input.lhs = digit;
-    else
-        input.rhs = digit;
-}
-
-function clear() {
-    input = { lhs: null, rhs: null, operator: null };
-    calculatorInput.value = '';
-    decimalButton.disabled = false;
-}
+import Operations from './Operations.js';
 
 const calculatorInput = document.querySelector('#calculator-input');
+const functionsContainer = document.querySelector('#functions');
 const digitContainer = document.querySelector('#digits');
 const operatorContainer = document.querySelector('#operators');
-const keys = '7894561230'.split('');
-const operators = '/*-+'.split('');
-let input = { lhs: null, rhs: null, operator: null };
+const digits = '7894561230'.split('');
+let showingResult = false;
 
-keys.forEach(key => {
-    let currentNode = document.createElement('button');
-    currentNode.className = 'digit';
-    currentNode.innerText = key;
-    currentNode.addEventListener('click', () => {
-        if (input.rhs === null && input.operator !== null) calculatorInput.value = '';
-        calculatorInput.value = `${calculatorInput.value}${key}`;
-        putDigit(calculatorInput.value);
-        console.log(input);
+function makebutton (label, wrapper, action) {
+    let newButton = document.createElement('button');
+    newButton.className = 'digit';
+    newButton.innerText = label;
+    newButton.addEventListener('click', action);
+    wrapper.appendChild(newButton);
+    return newButton;
+};
+
+digits.forEach(digit => {
+    makebutton(digit, digitContainer, () => {
+        if (showingResult) {
+            calculatorInput.value = '';
+            showingResult = false;
+        }
+        calculatorInput.value = `${calculatorInput.value}${digit}`;
     });
-    digitContainer.appendChild(currentNode);
 });
 
-operators.forEach(key => {
-    let currentNode = document.createElement('button');
-    currentNode.className = 'digit';
-    currentNode.innerText = key;
-    currentNode.addEventListener('click', () => {
-        if (input.lhs === null) return;
-        input.operator = key;
-        input.lhs = operate(input.operator, input.lhs, input.rhs);
-        input.rhs = null;
-        calculatorInput.value = input.lhs;
-        console.log(input)
-        decimalButton.disabled = false;
-    });
-    operatorContainer.appendChild(currentNode);
+makebutton('/', operatorContainer, () => {
+    calculatorInput.value = Operations.parseExpression(calculatorInput.value);
+    calculatorInput.value = `${calculatorInput.value} / `;
+    decimalButton.disabled = false;
 });
 
-let decimalButton = document.createElement('button');
-decimalButton.className = 'digit';
-decimalButton.innerText = '.';
-decimalButton.addEventListener('click', (e) => {
+makebutton('*', operatorContainer, () => {
+    calculatorInput.value = Operations.parseExpression(calculatorInput.value);
+    calculatorInput.value = `${calculatorInput.value} * `;
+    decimalButton.disabled = false;
+});
+
+makebutton('-', operatorContainer, () => {
+    calculatorInput.value = Operations.parseExpression(calculatorInput.value);
+    calculatorInput.value = `${calculatorInput.value} - `;
+    decimalButton.disabled = false;
+});
+makebutton('+', operatorContainer, () => {
+    calculatorInput.value = Operations.parseExpression(calculatorInput.value);
+    calculatorInput.value = `${calculatorInput.value} + `;
+    decimalButton.disabled = false;
+});
+
+const decimalButton = makebutton('.', digitContainer, (e) => {
     calculatorInput.value = `${calculatorInput.value}.`;
     e.target.disabled = true;
 });
-digitContainer.appendChild(decimalButton);
 
-let evaluateButton = document.createElement('button');
-evaluateButton.className = 'digit';
-evaluateButton.innerText = '=';
-evaluateButton.addEventListener('click', () => {
-    input.lhs = operate(input.operator, input.lhs, input.rhs);
-    calculatorInput.value = input.lhs;
+makebutton('=', digitContainer, () => {
+    calculatorInput.value = Operations.parseExpression(calculatorInput.value);
     decimalButton.disabled = false;
+    showingResult = true;
 });
-digitContainer.appendChild(evaluateButton);
 
-let clearButton = document.createElement('button');
-clearButton.className = 'digit';
-clearButton.innerText = 'AC';
-clearButton.addEventListener('click', () => clear());
+makebutton('AC', functionsContainer, () => {
+    calculatorInput.value = '';
+});
 
-document.querySelector('#functions').appendChild(clearButton);
-clear();
+makebutton('C', functionsContainer, () => {
+    calculatorInput.value = calculatorInput.value.slice(0, -1);
+});
