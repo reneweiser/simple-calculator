@@ -30,23 +30,28 @@ makebutton('/', operatorContainer, () => {
     calculatorInput.value = Operations.parseExpression(calculatorInput.value);
     calculatorInput.value = `${calculatorInput.value} / `;
     decimalButton.disabled = false;
+    showingResult = false;
 });
 
 makebutton('*', operatorContainer, () => {
     calculatorInput.value = Operations.parseExpression(calculatorInput.value);
     calculatorInput.value = `${calculatorInput.value} * `;
     decimalButton.disabled = false;
+    showingResult = false;
 });
 
 makebutton('-', operatorContainer, () => {
     calculatorInput.value = Operations.parseExpression(calculatorInput.value);
     calculatorInput.value = `${calculatorInput.value} - `;
     decimalButton.disabled = false;
+    showingResult = false;
 });
+
 makebutton('+', operatorContainer, () => {
     calculatorInput.value = Operations.parseExpression(calculatorInput.value);
     calculatorInput.value = `${calculatorInput.value} + `;
     decimalButton.disabled = false;
+    showingResult = false;
 });
 
 const decimalButton = makebutton('.', digitContainer, (e) => {
