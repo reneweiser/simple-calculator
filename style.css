@@ -1,56 +1,124 @@
+:root {
+    --textColor: #fdf6e3;
+    --Base03: #002b36;
+    --Base02: #073642;
+    --Base01: #586e75;
+    --Base00: #657b83;
+    --Base0: #839496;
+    --Base1: #93a1a1;
+    --Base2: #eee8d5;
+    --Base3: #fdf6e3;
+    --accent: rgb(196,221,138);
+}
+
 body {
-    background-color: #002b36;
+    background-image: url('./img/blank-colors-desk-electronics.jpg');
+    background-size: cover;
+    background-position: center;
     font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: .75em;
+}
+
+a {
+    color: var(--accent);
+    transition: all .2s;
+    padding: .2em .1em;
+}
+
+a:hover {
+    background-color: var(--Base0);
+}
+
+a:visited {
+    color: var(--accent);
 }
 
 .container {
     margin: 0 auto;
-    width: 800px;
-    color: #fdf6e3;
+    width: 580px;
+    height: 100vh;
+    color: var(--textColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#calculator {
+    width: 580px;
+    padding: 20px;
+    border: 20px solid rgba(7,54,66, 0.2);
+    background-clip: padding-box;
+    background-color: var(--Base01);
+    /* background-color: rgba(7,54,66, 0.2); */
 }
 
 #calculator-input {
     font-family: 'Roboto Mono', monospace;
-    background-color: #586e75;
+    color: var(--textColor);
+    background-color: var(--Base00);
+    border-width: 0 0 5px 0;
+    border-style: solid;
+    border-color: var(--accent);
     text-align: right;
-    color: #fdf6e3;
-    padding: 1em 0.5em;
-    border: 1px solid #073642;
-    border-radius: 5px;
+    padding: 0.5em;
     width: 100%;
-    margin: 2em 0;
+    margin-bottom: .75em;
     font-size: 2em;
+    outline: none;
+}
+
+#functions {
+    width: 500px;
+    justify-content: flex-end;
 }
 
 #digits {
-    width: 600px;
+    width: 375px;
 }
 
 #operators {
-    width: 200px;
+    width: 125px;
+}
+
+.keypad {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .key-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .digit {
-    outline: none;
-    background-color: #586e75;
-    color: #fdf6e3;
-    width: 196px;
-    height: 100px;
+    font-family: 'Roboto Mono', monospace;
+    width: 121px;
+    height: 96px;
     margin: 2px;
+    outline: none;
+    background-color: var(--Base00);
+    color: #fdf6e3;
     font-size: 1.5em;
-    border: 1px solid #073642;
-    border-radius: 5px;
+    border: none;
     transition: all 0.2s;
 }
 
 .digit:hover {
-    background-color: #657b83;
+    background-color: var(--Base0);
 }
 
 .digit:disabled {
-    background-color: rgba(88, 110, 117, 0.2);
+    background-color: var(--Base01);
+}
+
+.footer {
+    background-color: rgba(7,54,66, 0.2);
+    text-align: center;
+    padding: 1em;
 }

@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./reset.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="container">
         <div id="calculator">
+            <h1>Simple Calculator</h1>
             <input type="text" id="calculator-input" readonly>
-            <div id="functions" class="key-container"></div>
-            <div class="key-container">
-                <div id="digits"></div>
-                <div id="operators"></div>
+            <div class="keypad">
+                <div class="key-container" id="functions"></div>
+                <div class="key-container" id="digits"></div>
+                <div class="key-container" id="operators"></div>
             </div>
         </div>
+        <p class="footer"><a href="https://www.pexels.com/de-de/foto/bildschirm-bleistift-drinnen-elektrik-370474/">Background Image</a> by <a href="https://www.pexels.com/de-de/@nurseryart">Porapak Apichodilok</a></p>
     </main>
 </body>
 <script src="main.js" type="module"></script>
