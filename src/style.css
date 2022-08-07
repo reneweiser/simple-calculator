@@ -12,7 +12,7 @@
 }
 
 body {
-    background-image: url('./img/blank-colors-desk-electronics.jpg');
+    background-image: url('../img/blank-colors-desk-electronics.jpg');
     background-size: cover;
     background-position: center;
     font-family: 'Roboto', sans-serif;
